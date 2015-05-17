@@ -65,6 +65,7 @@ class Client implements ApiRequestInterface
 
     protected function getConfig()
     {
+        $config = array();
         $config['headers'] = $this->headers;
         $config['config'] = array(
             'curl' => $this->curlConfig
