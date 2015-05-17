@@ -27,6 +27,4 @@ class GameApiRequest
 
         return $this->apiRequest->get($ressourceToGrab);
     }
-
-
 }

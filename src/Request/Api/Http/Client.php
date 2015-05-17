@@ -10,7 +10,7 @@ class Client implements ApiRequestInterface
     protected $parameters = array();
     protected $curlConfig = array();
 
-    function __construct()
+    public function __construct()
     {
         $this->guzzle = new \GuzzleHttp\Client();
         $this->clean();
@@ -81,6 +81,4 @@ class Client implements ApiRequestInterface
             throw new HttpStatusCodeException("Not successful http status code", $statusCode);
         }
     }
-
-
 }
