@@ -2,6 +2,10 @@
 
 use GameScan\Core\Request\Api\ApiRequestInterface;
 
+/**
+ * Class Client
+ * @package GameScan\Core\Request\Api\Http
+ */
 class Client implements ApiRequestInterface
 {
 
@@ -16,6 +20,9 @@ class Client implements ApiRequestInterface
         $this->clean();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function clean()
     {
         $this->resetHeaders();
@@ -32,6 +39,11 @@ class Client implements ApiRequestInterface
         $this->parameters = array();
     }
 
+    /**
+     * Http Request Timeout
+     * @param int $timeout
+     * @throws \Exception
+     */
     public function setTimeout($timeout)
     {
         if (!is_int($timeout)) {
@@ -40,6 +52,9 @@ class Client implements ApiRequestInterface
         $this->curlConfig[CURLOPT_TIMEOUT] = $timeout;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setHeaders(array $headers)
     {
         foreach ($headers as $headerKey => $headerValue) {
@@ -47,6 +62,9 @@ class Client implements ApiRequestInterface
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setParameters(array $parameters)
     {
         foreach ($parameters as $parameterKey => $parameterValue) {
@@ -54,6 +72,9 @@ class Client implements ApiRequestInterface
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function get($ressourceToGrab)
     {
         $config = $this->getConfig();
@@ -63,6 +84,10 @@ class Client implements ApiRequestInterface
         return (string)$response->getBody();
     }
 
+    /**
+     * Get http request config for guzzle
+     * @return array
+     */
     protected function getConfig()
     {
         $config = array();
@@ -75,11 +100,14 @@ class Client implements ApiRequestInterface
         return $config;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function checkHttpStatus($response)
     {
         $statusCode = (int)$response->getStatusCode();
         if ($statusCode < 200 || $statusCode > 299) {
-            throw new HttpStatusCodeException("Not successful http status code", $statusCode);
+            throw new ApiStatusCodeException("Not successful http status code", $statusCode);
         }
     }
 }
