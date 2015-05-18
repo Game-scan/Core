@@ -28,14 +28,15 @@ class GameApiRequest
     /**
      * Request a ressource of an api with the get http method
      * @param $ressourceToGrab
+     * @param array|null $parameters
      * @return string
      */
-    public function get($ressourceToGrab)
+    public function get($ressourceToGrab, array $parameters = null)
     {
         $this->apiRequest->clean();
         $this->apiRequest->setHeaders($this->apiConfiguration->getHeaders());
         $this->apiRequest->setParameters($this->apiConfiguration->getParameters());
 
-        return $this->apiRequest->get($ressourceToGrab);
+        return $this->apiRequest->get($ressourceToGrab, $parameters);
     }
 }

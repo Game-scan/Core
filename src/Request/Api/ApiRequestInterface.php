@@ -30,8 +30,9 @@ interface ApiRequestInterface
     /**
      * Get call on a specific url
      * @param string $ressourceToGrab
+     * @param array|null $parameters
      * @return string Body content
      * @throws ApiStatusCodeException
      */
-    public function get($ressourceToGrab);
+    public function get($ressourceToGrab, array $parameters = null);
 }
