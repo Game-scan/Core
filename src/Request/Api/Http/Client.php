@@ -78,8 +78,8 @@ class Client implements ApiRequestInterface
     public function get($ressourceToGrab, array $parameters = null)
     {
         $config = $this->getConfig();
-        if($parameters !== null){
-            foreach($parameters as $parameterKey => $parameterValue){
+        if ($parameters !== null) {
+            foreach ($parameters as $parameterKey => $parameterValue) {
                 $config["query"][$parameterKey] = $parameterValue;
             }
         }
