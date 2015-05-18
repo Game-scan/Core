@@ -86,7 +86,7 @@ class Client implements ApiRequestInterface
         $request = $this->guzzle->createRequest("GET", $ressourceToGrab, $config);
         $response = $this->guzzle->send($request);
         $this->checkHttpStatus($response);
-        return (string)$response->getBody();
+        return (string) $response->getBody();
     }
 
     /**
@@ -110,7 +110,7 @@ class Client implements ApiRequestInterface
      */
     protected function checkHttpStatus($response)
     {
-        $statusCode = (int)$response->getStatusCode();
+        $statusCode = (int) $response->getStatusCode();
         if ($statusCode < 200 || $statusCode > 299) {
             throw new ApiStatusCodeException("Not successful http status code", $statusCode);
         }
