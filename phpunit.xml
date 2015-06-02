@@ -10,7 +10,6 @@
         </whitelist>
     </filter>
     <logging>
-        <!-- and this is where your report will be written -->
         <log type="coverage-clover" target="./build/clover.xml"/>
     </logging>
 </phpunit>
