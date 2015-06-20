@@ -35,6 +35,6 @@ class Environment
             $this->load();
         }
         $value = getenv($key);
-        return $value !== false ? $value : $defaultValue ;
+        return $value !== false ? $value : $defaultValue;
     }
 }
