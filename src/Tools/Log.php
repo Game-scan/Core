@@ -26,6 +26,9 @@ class Log
 
     public function __construct(\Monolog\Handler\AbstractHandler $handler = null, $formatter = null, $processor = null, array $config = array())
     {
+        $env = new Environment();
+        $this->logLevel = $env->get("LOG_LEVEL", 200);
+        $this->path = $env->get("LOG_PATH", '/tmp/gameScan.log');
         $this->loadConfig($config);
         $this->initializeFormatter($formatter);
         $this->initializeHandler($handler);
