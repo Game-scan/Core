@@ -10,10 +10,14 @@ matrix:
     - php: 7.0
 
 before_script:
-  - composer install --dev
+  - composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH
+  - composer install --dev --no-interaction
 
 script: phpunit --coverage-clover=coverage.clover
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+env:
+  global:
+    secure: EP7vsNWynXaHJwsCTNwR38237jqKMJJoIppjMN9M8kjeGx+JEgNFDQgqL1lUPTRF+9XFbikMIsOTbyIr7ujNJe0viTAx8I1vtO3cQzlru//wMsxUYcMf3csqM2iRZZA9LuwQfSA1tUWs3ga3V40QW3oNAXqA0F1Iph3ET18HfRlI2QNIF2jEZU6KsxRsc48Vqxy1bnX+mlBDyAvKpMHXfE+x1Acl3GtLHlQoxkxo54EFGOGWLgtvpFXmf9ffs78l5FnZ+9H4Lc72Vg29QKAkvmyGwOidhztkEc1Lah2kEZmU166658U5eyftdUiNTe/ihTs7vjd3pCZKU1TadZc1seL4OPZ0Vtro2eJ18HnJVZLl9RLewFD5b7CSpgHKh6D5MRFWFrRhSgJi21+fSL+g6hhZA6hSnxUf+FgbiNCLtmIVfL7qFvvAAk0h8xndxqI6fnrOacRnm2suty7teHZ0etMj8MioO+eQQp7ZNZvqJfGn+hmEetY+x6+TOMPlOtHmNEccz98FaiTPgkYufUaLY1ZY82zVj3R3LagOe9wyoSB7XIimwQQWL6A0KjFqOUb1hdFKSwbW55LvRfvWkCjyIPjZC4/U52z+ocIWFN9Ub+rTCC6GEhR2GjbGpjKp2Gjd3jk2SFrYY2wh46WkgCAQhkgMhuix+Yif4u6Ibkpd5hY=
