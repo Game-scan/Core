@@ -12,7 +12,7 @@ class Environment
     public function __construct($path = null, $filename = ".env")
     {
         if ($path === null) {
-            $path = __DIR__ . '/../../';
+            $path = __DIR__ . '/../../../../..';
         }
 
         if (!file_exists($path . DIRECTORY_SEPARATOR . $filename)) {
@@ -29,11 +29,12 @@ class Environment
         $this->hasLoadValues = true;
     }
 
-    public function get($key)
+    public function get($key, $defaultValue = false)
     {
         if (!$this->hasLoadValues) {
             $this->load();
         }
-        return getenv($key);
+        $value = getenv($key);
+        return $value !== false ? $value : $defaultValue ;
     }
 }
