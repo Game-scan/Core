@@ -1,8 +1,5 @@
 /vendor/
 composer.phar
 composer.lock
-.DS_Store
-/.idea
-.idea
 .env
 /build
