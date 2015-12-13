@@ -19,7 +19,7 @@ class Environment
             throw new EnvironmentException($path . DIRECTORY_SEPARATOR . $filename . " is not exist. Please create an environment file before using this feature");
         }
 
-        $this->dotEnv = $path . DIRECTORY_SEPARATOR . $filename;
+        $this->path = $path . DIRECTORY_SEPARATOR . $filename;
     }
 
 
