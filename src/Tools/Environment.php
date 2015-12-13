@@ -1,12 +1,12 @@
 <?php namespace GameScan\Core\Tools;
 
-use Dotenv\Dotenv;
+use Dotenv;
 use GameScan\Core\Exceptions\EnvironmentException;
 
 class Environment
 {
 
-    private $dotEnv = null;
+    private $path = null;
     private $hasLoadValues = false;
 
     public function __construct($path = null, $filename = ".env")
@@ -19,13 +19,13 @@ class Environment
             throw new EnvironmentException($path . DIRECTORY_SEPARATOR . $filename . " is not exist. Please create an environment file before using this feature");
         }
 
-        $this->dotEnv = new Dotenv($path, $filename);
+        $this->dotEnv = $path . DIRECTORY_SEPARATOR . $filename;
     }
 
 
     public function load()
     {
-        $this->dotEnv->load();
+        Dotenv::load($this->path);
         $this->hasLoadValues = true;
     }
 
